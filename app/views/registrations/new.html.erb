@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Sign Up Page</title>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">Sign Up</h1>
+
+                        <%= form_with model: @user, url: registration_path, id: 'signup-form' do |form|%>
+                            <% if form.object.errors.any? %>
+                                <div class="alert alert-danger">
+                                    <% form.object.errors.full_messages.each do |message| %>
+                                        <div><%= message %></div>
+                                    <% end %>
+                                </div>
+                            <% end %>
+
+                            <div class="form-group">
+                                <%= form.label :email %>
+                                <%= form.email_field :email, class: 'form-control', id: 'email-input' %>
+                                <div id="email-error" class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <%= form.label :password %>
+                                <%= form.password_field :password, class: 'form-control' %>
+                            </div>
+
+                            <div class="form-group">
+                                <%= form.label :password_confirmation %>
+                                <%= form.password_field :password_confirmation, class: 'form-control' %>
+                            </div>
+
+                            <div class="form-group">
+                                <%= form.submit 'Sign Up', class: 'btn btn-primary btn-block', onclick: 'validateForm()' %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            var emailInput = document.getElementById('email-input');
+            var emailError = document.getElementById('email-error');
+            var emailValue = emailInput.value.trim();
+
+            // Simple email validation regex
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailValue === '') {
+                emailError.innerHTML = 'Email is required';
+            } else if (!emailRegex.test(emailValue)) {
+                emailError.innerHTML = 'Invalid email format';
+            } else {
+                emailError.innerHTML = ''; // Clear the error message
+                document.getElementById('signup-form').submit(); // Submit the form if validation passes
+            }
+        }
+    </script>
+</body>
+
+</html>
