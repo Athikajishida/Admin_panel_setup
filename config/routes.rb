@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resource :registration
   resource :password_reset
   resource :password
+  resources :admin, only: [:index, :show, :edit, :update, :destroy]
 
   # Defines the root path route ("/")
   root 'main#index'
