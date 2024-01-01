@@ -10,6 +10,7 @@ User
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "applications", "data-turbo-track": "reload" %>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -60,35 +61,10 @@ User
         <%= yield %>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        // JavaScript to show/hide alerts
-        document.addEventListener("DOMContentLoaded", function () {
-            var successAlert = document.getElementById("success-alert");
-            var errorAlert = document.getElementById("error-alert");
-
-            // Set the content of alerts dynamically
-            successAlert.innerHTML = "<%= notice %>";
-            errorAlert.innerHTML = "<%= alert %>";
-
-            // Show/hide alerts after a certain delay
-            if (successAlert.innerHTML.trim() !== "") {
-                setTimeout(function () {
-                    successAlert.style.display = "none";
-                }, 5000); // Hide success alert after 5 seconds
-            }
-
-            if (errorAlert.innerHTML.trim() !== "") {
-                setTimeout(function () {
-                    errorAlert.style.display = "none";
-                }, 5000); // Hide error alert after 5 seconds
-            }
-        });
-    </script>
 </body>
 
 </html>

@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_include_tag 'validations' %>
+
     <title>Log In</title>
 </head>
 
@@ -23,10 +27,11 @@
                                 <%= form.email_field :email, class: 'form-control' %>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group"> 
                                 <%= form.label :password %>
                                 <%= form.password_field :password, class: 'form-control' %>
                             </div>
+                              <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
 
                             <div class="form-group">
                                 <%= form.submit 'Log In', class: 'btn btn-primary btn-block' %>
